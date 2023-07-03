@@ -68,7 +68,7 @@ export default function Nav({ setPublicKey }) {
             <div className="group flex ml-auto">
               <ConnectedMethods setPublicKey={setPublicKey} />
 
-              <div className="md:relative fixed top-5 left-3 md:top-0 md:left-0">
+              <div className="md:relative fixed top-4 mt-1 left-3 md:top-0 md:left-0">
                 <DarkModeToggle />
               </div>
             </div>
