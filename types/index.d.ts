@@ -2,9 +2,9 @@ interface User {
   id: string;
 }
 
-interface AddRaffleEntryButtonProps {
+interface AddPointsEntryButtonProps {
   user: User;
-  refreshRaffleEntries: () => void;
+  refreshPointsEntries: () => void;
 }
 
 interface LinkWalletProps {

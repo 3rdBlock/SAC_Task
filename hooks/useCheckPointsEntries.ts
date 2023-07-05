@@ -1,11 +1,11 @@
 import { supabase } from "@/utils/supabaseClient";
 import { useCallback, useEffect, useState } from "react";
 
-const useCheckRaffleEntries = (userId: string | null) => {
+const useCheckPointsEntries = (userId: string | null) => {
   const [totalPoints, setTotalPoints] = useState<number>(0);
   const [loadingChecks, setLoadingChecks] = useState(true);
 
-  const checkRaffleEntries = useCallback(async () => {
+  const checkPointEntries = useCallback(async () => {
     setLoadingChecks(true);
 
     if (!userId) {
@@ -16,7 +16,7 @@ const useCheckRaffleEntries = (userId: string | null) => {
 
     try {
       const { data: entries, error } = await supabase
-        .from("raffle_entries")
+        .from("points")
         .select("points")
         .eq("user_id", userId);
 
@@ -39,14 +39,14 @@ const useCheckRaffleEntries = (userId: string | null) => {
   }, [userId]);
 
   useEffect(() => {
-    checkRaffleEntries();
-  }, [checkRaffleEntries]);
+    checkPointEntries();
+  }, [checkPointEntries]);
 
   return {
     totalPoints,
-    refreshRaffleEntries: checkRaffleEntries,
+    refreshPointsEntries: checkPointEntries,
     loadingChecks,
   };
 };
 
-export default useCheckRaffleEntries;
+export default useCheckPointsEntries;

@@ -3,11 +3,12 @@ import Nav from "@/components/nav";
 import { useState, useEffect } from "react";
 import { PublicKey } from "@solana/web3.js";
 import LinkWallet from "@/components/LinkWallet";
-import useCheckUserProfile from "@/utils/useCheckUserProfile";
+import useCheckUserProfile from "@/hooks/useCheckUserProfile";
 import { supabase } from "@/utils/supabaseClient";
 import BuyRaffle from "@/components/BuyRaffle";
-import useCheckRaffleEntries from "@/utils/useCheckRaffleEntries";
+import useCheckPointsEntries from "@/hooks/useCheckPointsEntries";
 import Loading from "@/components/Loading";
+import CreateRaffleButton from "@/components/CreateRaffle";
 
 export default function Home() {
   const [publicKey, setPublicKey] = useState<PublicKey | null>(null);
@@ -21,9 +22,9 @@ export default function Home() {
     useCheckUserProfile(id);
   const {
     totalPoints,
-    refreshRaffleEntries,
+    refreshPointsEntries,
     loadingChecks: raffleLoading,
-  } = useCheckRaffleEntries(id);
+  } = useCheckPointsEntries(id);
   console.log(user);
 
   useEffect(() => {
@@ -86,9 +87,14 @@ export default function Home() {
           <div className="flex flex-col justify-center items-center">
             <BuyRaffle
               user={user}
-              refreshRaffleEntries={refreshRaffleEntries}
+              refreshPointsEntries={refreshPointsEntries}
             />
-            <p className="text-white m-2">Total raffle points: {totalPoints}</p>
+            <br />
+            <CreateRaffleButton
+              user={user}
+              refreshPointsEntries={refreshPointsEntries}
+            />
+            <p className="text-white m-2">Total points: {totalPoints}</p>
           </div>
         ))}
     </main>

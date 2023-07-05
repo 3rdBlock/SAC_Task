@@ -8,7 +8,7 @@ const genericHamburgerLine =
   "h-1 w-6 my-0.5 rounded-full transition-all duration-300 bg-zinc-900 dark:bg-zinc-100";
 
 const links = [{ path: "/", label: "SAC" }];
-
+//   @ts-ignore
 export default function Nav({ setPublicKey }) {
   const [scrolling, setScrolling] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

@@ -2,11 +2,11 @@ import { useEffect, useRef } from "react";
 import Button from "./Button";
 import useAddPointsEntry from "@/hooks/useAddPointsEntry";
 
-const BuyRaffleButton: React.FC<AddPointsEntryButtonProps> = ({
+const CreateRaffleButton: React.FC<AddPointsEntryButtonProps> = ({
   user,
   refreshPointsEntries,
 }) => {
-  const [addPointsEntry, isLoading] = useAddPointsEntry(user, "raffle_entry");
+  const [addPointsEntry, isLoading] = useAddPointsEntry(user, "raffle_create");
   const prevIsLoading = useRef(isLoading);
 
   useEffect(() => {
@@ -14,15 +14,14 @@ const BuyRaffleButton: React.FC<AddPointsEntryButtonProps> = ({
       refreshPointsEntries();
     }
 
-    // Update the previous isLoading state.
     prevIsLoading.current = isLoading;
   }, [isLoading, refreshPointsEntries]);
 
   return (
     <Button loading={isLoading} onClick={addPointsEntry} disabled={isLoading}>
-      Add Raffle Entry
+      Create Raffle Entry
     </Button>
   );
 };
 
-export default BuyRaffleButton;
+export default CreateRaffleButton;
